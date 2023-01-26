@@ -295,6 +295,25 @@ int main(){
 	}
 	printf("\n");	
 	printf("\n");
+	
+		int aux;
+
+	printf("HEAP SORT\n\n");
+
+	for(int i=0; i < 8; i++){
+		printf("%d ", vetor9[i]);
+	}
+	printf("\n");	
+	printf("\n");
+
+	aux = heapSort(vetor9, 8);
+
+	printf("%d", aux);
+	for(int i=0; i < 8; i++){
+		printf("%d ", vetor9[i]);
+	}
+	printf("\n");
+	
 
 
 
