@@ -12,7 +12,7 @@ int main(){
 
 	//Dica: somente é posśivel criar vetores grandes utilizando alocação dinâmica de memória
 	//Veja um exemplo de alocação dinâmica a seguir
-	int tamVetor = 4096;
+	int tamVetor = 8;
 	int* vetor1 = malloc(tamVetor * sizeof(int));
 	int* vetor2 = malloc(tamVetor * sizeof(int));
 	int* vetor3 = malloc(tamVetor * sizeof(int));
@@ -21,6 +21,7 @@ int main(){
 	int* vetor6 = malloc(tamVetor * sizeof(int));
 	int* vetor7 = malloc(tamVetor * sizeof(int));
 	int* vetor8 = malloc(tamVetor * sizeof(int));
+	int* vetor9 = malloc(tamVetor * sizeof(int));
 
 	if(vetor1 == NULL){
 		printf("Falha fatal. Impossível alocar memoria.");
@@ -54,6 +55,10 @@ int main(){
 		printf("Falha fatal. Impossível alocar memoria.");
 		return 1;
 	}
+	if(vetor9 == NULL){
+		printf("Falha fatal. Impossível alocar memoria.");
+		return 1;
+	}
 	//Depois de alocado, o vetor pode ser utilizado normalmente
 	//Não esqueça de desalocar no final do programa via free
 		
@@ -79,8 +84,10 @@ int main(){
 		vetor6[i] = j;
 		vetor7[i] = j;
 		vetor8[i] = j;
+		vetor9[i] = j;
 		j--;
 	}
+
 
 
 	//Nome e GRR
@@ -281,41 +288,38 @@ int main(){
 
 	numComp = quickSort(vetor8, tamVetor);
 
+
 	end = clock();//end recebe o "ciclo" corrente
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 
-	printf("comparacoes: %d", numComp);
-	printf("\n");
-	printf("Tempo total do teste com vetor invertido: %f", total);
-	printf("\n");
-	
 
 	for(int i=0; i < tamVetor; i++){
 		printf("%d ", vetor8[i]);
 	}
 	printf("\n");	
+
+	printf("comparacoes: %d", numComp);
 	printf("\n");
+	printf("Tempo total do teste com vetor invertido: %f", total);
+	printf("\n");
+
 	
-		int aux;
 
 	printf("HEAP SORT\n\n");
 
-	for(int i=0; i < 8; i++){
+
+	for(int i=0; i < tamVetor; i++){
 		printf("%d ", vetor9[i]);
 	}
 	printf("\n");	
 	printf("\n");
 
-	aux = heapSort(vetor9, 8);
-
-	printf("%d", aux);
-	for(int i=0; i < 8; i++){
+	heapSort(vetor9, tamVetor);
+	
+	for(int i=0; i < tamVetor; i++){
 		printf("%d ", vetor9[i]);
 	}
 	printf("\n");
-	
-
-
 
 /*
 
@@ -354,6 +358,7 @@ int main(){
 	free(vetor6);
 	free(vetor7);
 	free(vetor8);
+	free(vetor9);
 
 	return 0;
 }
