@@ -177,7 +177,47 @@ int quickSort(int vetor[], int tam){
 	return numComp;
 }
 
+void max_heapify(int vetor[], int i, int tam){
+	int esq, dir, maior;
+	
+	maior = i;
+	esq = 2*i + 1;
+	dir = 2*i + 2;
+
+	if (esq <= tam && vetor[esq] > vetor[maior])
+		maior = esq;
+	
+	if (dir <= tam && vetor[dir] > vetor [maior])
+		maior = dir;
+
+	if (maior != i){
+		troca(vetor, i, maior);
+		max_heapify(vetor, maior, tam);
+	}
+}
+
+int constroi_heap_max(int vetor[], int tam){
+	int i;
+	for(i = tam/2 - 1; i >= 0; i--){
+		max_heapify(vetor, i, tam);
+	}
+	return *vetor;
+}
+
+int heapSort_aux(int vetor[], int tam){
+	int i;
+
+	constroi_heap_max(vetor, tam);
+
+	for(i = tam - 1; i >= 0; i--){
+		troca(vetor, 0, i);
+		max_heapify(vetor, 0, i);
+	}
+
+	return *vetor;
+}
+
 int heapSort(int vetor[], int tam){
-	vetor[0] = 1;
-	return -1;
+	heapSort_aux(vetor, tam-1);
+	return 1;
 }
